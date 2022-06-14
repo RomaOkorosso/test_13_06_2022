@@ -152,7 +152,7 @@ def test_medium():
         120968,
     ]
     s = Singleton()
-    assert s.solve(sticks) == 4836692
+    assert s.solve(sticks) == 4824064
 
 
 def test_hard():
@@ -162,4 +162,14 @@ def test_hard():
 
     s = Singleton()
 
-    assert s.solve(sticks) == 5233919113
+    assert s.solve(sticks) == 4568244645
+
+
+def test_full():
+    with open("full_test.txt", "r") as f:
+        sticks = f.readlines()
+        sticks = list(map(int, *[l.split(" ") for l in sticks]))
+
+    s = Singleton()
+
+    assert s.solve(sticks) == 24984214466568

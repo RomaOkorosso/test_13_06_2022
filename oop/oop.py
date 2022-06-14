@@ -1,7 +1,5 @@
 from typing import List
-
-
-# from math import abs
+from math import ceil
 
 
 class Singleton(object):
@@ -20,14 +18,15 @@ class Singleton(object):
         self.sticks = sticks
 
         if (
-            self.sticks is None or len(self.sticks) == 1
+                self.sticks is None or len(self.sticks) == 1
         ):  # if we have only one or no elem result will be 0
             return self._x
 
-        avg_len = sum(self.sticks) // len(self.sticks)
+        self.sticks.sort()
+        right_middle = ceil(len(self.sticks) / 2)
+        left_middle = len(self.sticks) // 2
 
-        for i in range(len(self.sticks)):
-            if self.sticks[i] == avg_len:
-                continue
-            self._x += abs(self.sticks[i] - avg_len)
+        self._x = sum(sticks[right_middle:]) - sum(sticks[:left_middle])
+        # get sum of right(from middle) values of arr and left, that will be our answer
+
         return self._x
